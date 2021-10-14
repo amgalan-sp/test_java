@@ -3,8 +3,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        roman_numerals z = roman_numerals.valueOf("X");
+        roman_numerals z = roman_numerals.valueOf("XL");
+        roman_numerals zxx = roman_numerals.XC;
+
         System.out.println(z.getCode_to_roman());
+        System.out.println(zxx.name());
+        System.out.println(zxx.getCode_to_roman());
 /*
         Operation op = null;
         Scanner in = new Scanner(System.in);
