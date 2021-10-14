@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        roman_numerals z = roman_numerals.valueOf("X");
+        System.out.println(z.getCode_to_roman());
         /*
         Operation op = null;
         Scanner in = new Scanner(System.in);
@@ -20,14 +22,11 @@ public class Main {
         else if (Operation1 == '*'){
             op = Operation.MULTIPLY;
         }
-        */
-
-/*        System.out.println(op.action(num1, num2));
+        System.out.println(op.action(num1, num2));
         in.close();
 
- */
-        roman_numerals z = roman_numerals.valueOf("X");
-        System.out.println(z.getCode_to_roman());
+
+        */
 
     }
 }
