@@ -3,32 +3,23 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        roman_numerals z = roman_numerals.valueOf("XL");
-        roman_numerals zxx = roman_numerals.XC;
 
-        System.out.println(z.getCode_to_roman());
-        System.out.println(zxx.name());
-        System.out.println(zxx.getCode_to_roman());
-/*
         Operation op = null;
         Scanner in = new Scanner(System.in);
-        int num1 = in.nextInt();
+        String num1 = in.next();
         char Operation1 = in.next().charAt(0);
-        int num2 = in.nextInt();
         if (Operation1 == '+')
             op = Operation.SUM;
-        else if (Operation1 == '-'){
+        else if (Operation1 == '-')
             op = Operation.SUBTRACT;
-        }
-        else if (Operation1 == '/'){
+        else if (Operation1 == '/')
             op = Operation.DIVIDE;
-        }
-        else if (Operation1 == '*'){
+        else if (Operation1 == '*')
             op = Operation.MULTIPLY;
-        }
-        System.out.println(op.action(num1, num2));
+        String num2 = in.next();
+        roman_numerals z1 = roman_numerals.valueOf(num1);
+        roman_numerals z2 = roman_numerals.valueOf(num2);
         in.close();
-
- */
+        System.out.println(op.action(z1.getCode_to_roman(), z2.getCode_to_roman()));
     }
 }
