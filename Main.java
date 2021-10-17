@@ -16,14 +16,6 @@ public class Main {
                 d++;
             } else if (num.charAt(i) == 'X') {
                 d++;
-            } else if (num.charAt(i) == 'L') {
-                d++;
-            } else if (num.charAt(i) == 'C') {
-                d++;
-            } else if (num.charAt(i) == 'D') {
-                d++;
-            } else if (num.charAt(i) == 'M') {
-                d++;
             }
         }
         if (s == num.length()) {
