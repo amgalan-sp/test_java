@@ -37,8 +37,78 @@ public class Main {
         }
         return x;
     }
+    public static String Romanic_number(int num) {
+        String romanic_number = "";
+        String i = "I";
+        String iv = "IV";
+        String v = "V";
+        String ix = "IX";
+        String x = "X";
+        String xl = "XL";
+        String l = "L";
+        String xc = "XC";
+        String c = "C";
+        String cd = "CD";
+        String d = "D";
+        String cm = "CM";
+        String m = "M";
+
+        for (int y = num / 1000; y > 0; y--) {
+            romanic_number += m;
+        }
+        num = num % 1000;
+        for (int y = num / 900; y > 0; y--) {
+            romanic_number += cm;
+        }
+        num = num % 900;
+        for (int y = num / 500; y > 0; y--) {
+            romanic_number += d;
+        }
+        num = num % 500;
+        for (int y = num / 400; y > 0; y--) {
+            romanic_number += cd;
+        }
+        num = num % 400;
+        for (int y = num / 100; y > 0; y--) {
+            romanic_number += c;
+        }
+        num = num % 100;
+        for (int y = num / 90; y > 0; y--) {
+            romanic_number += xc;
+        }
+        num = num % 90;
+        for (int y = num / 50; y > 0; y--) {
+            romanic_number += l;
+        }
+        num = num % 50;
+        for (int y = num / 40; y > 0; y--) {
+            romanic_number += xl;
+        }
+        num = num % 40;
+        for (int y = num / 10; y > 0; y--) {
+            romanic_number += x;
+        }
+        num = num % 10;
+        for (int y = num / 9; y > 0; y--) {
+            romanic_number += ix;
+        }
+        num = num % 9;
+        for (int y = num / 5; y > 0; y--) {
+            romanic_number += v;
+        }
+        num = num % 5;
+        for (int y = num / 4; y > 0; y--) {
+            romanic_number += iv;
+        }
+        num = num % 4;
+        for (int y = num; y > 0; y--) {
+            romanic_number += i;
+        }
+        return romanic_number;
+    }
 
     public static void main(String[] args) {
+
         Operation op = null;
         int x;
         int y;
@@ -54,6 +124,10 @@ public class Main {
             op = Operation.DIVIDE;
         else if (Operation1 == '*')
             op = Operation.MULTIPLY;
+        else {
+            System.out.println("throws Exception //т.к. строка не является математической операцией\n");
+            return;
+        }
         String num2 = in.next();
         in.close();
         x = Check_number(num1)[1];
@@ -64,7 +138,7 @@ public class Main {
                 System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел\n");
             }
             if (z >= 0) {
-                System.out.println("Приняты римские цифры: " + z);
+                System.out.println(Romanic_number(z));
             }
         }
         else if (Check_number(num1)[0] != Check_number(num2)[0]) {
