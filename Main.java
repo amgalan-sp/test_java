@@ -5,6 +5,7 @@ public class Main {
     public static int[] Check_number(String num) {
         int s = 0;
         int d = 0;
+
             int[] x = new int[10];
         for (int i = 0; i < num.length(); i++) {
             if (Character.isDigit(num.charAt(i))) {
@@ -38,10 +39,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         Operation op = null;
         int x;
         int y;
+        int z;
         Scanner in = new Scanner(System.in);
         String num1 = in.next();
         char Operation1 = in.next().charAt(0);
@@ -57,6 +58,20 @@ public class Main {
         in.close();
         x = Check_number(num1)[1];
         y = Check_number(num2)[1];
-        System.out.println(op.action(x, y));
+        z = op.action(x, y);
+        if (Check_number(num1)[0] == 1 && Check_number(num2)[0] == 1) {
+            if (z < 0) {
+                System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел\n");
+            }
+            if (z >= 0) {
+                System.out.println("Приняты римские цифры: " + z);
+            }
+        }
+        else if (Check_number(num1)[0] != Check_number(num2)[0]) {
+            System.out.println("throws Exception //т.к. используются одновременно разные системы счисления\n");
+        }
+        else if (Check_number(num1)[0] == 0 && Check_number(num2)[0] == 0) {
+            System.out.println(z);
+        }
     }
 }
