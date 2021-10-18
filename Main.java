@@ -3,32 +3,30 @@ import java.util.Scanner;
 public class Main {
 
     public static int[] Check_number(String num) {
-        int s = 0;
-        int d = 0;
-
-            int[] x = new int[10];
-        for (int i = 0; i < num.length(); i++) {
-            if (Character.isDigit(num.charAt(i))) {
-                s++;
-            } else if (num.charAt(i) == 'I') {
-                d++;
-            } else if (num.charAt(i) == 'V') {
-                d++;
-            } else if (num.charAt(i) == 'X') {
-                d++;
+        int[] x = new int[10];
+        try {
+            if (Integer.parseInt(num) <= 10 && Integer.parseInt(num) > 0) {
+                x[1] = Integer.parseInt(num);
+                x[0] = 0;
             }
-        }
-        if (s == num.length()) {
-            x[0] = 0;
-            x[1] = Integer.parseInt(num);
-        }
-        else if (d == num.length()) {
-            roman_numerals z1 = roman_numerals.valueOf(num);
-            x[0] = 1;
-            x[1] = z1.getCode_to_roman();
+            else {
+                throw new ArithmeticException();
+            }
+        } catch (ArithmeticException r) {
+            System.out.println("throws Exception // т.к. введенное значение не входит в промежуток с 1 до 10");
+        } catch (NumberFormatException e) {
+            try {
+                roman_numerals z1 = roman_numerals.valueOf(num);
+                x[1] = z1.getCode_to_roman();
+                x[0] = 1;
+            } catch (IllegalArgumentException e1) {
+                System.out.println("throws Exception // т.к. введенное значение не является римским и арабским числом или больше X");
+                x[0] = 1;
+            }
         }
         return x;
     }
+
     public static String Romanic_number(int num) {
         String romanic_number = "";
         String i = "I";
@@ -100,43 +98,46 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         Operation op = null;
-        int x;
-        int y;
+        int[] x;
+        int[] y;
         int z;
         Scanner in = new Scanner(System.in);
         String num1 = in.next();
         char Operation1 = in.next().charAt(0);
-        if (Operation1 == '+')
-            op = Operation.SUM;
-        else if (Operation1 == '-')
-            op = Operation.SUBTRACT;
-        else if (Operation1 == '/')
-            op = Operation.DIVIDE;
-        else if (Operation1 == '*')
-            op = Operation.MULTIPLY;
-        else {
-            System.out.println("throws Exception //т.к. строка не является математической операцией\n");
+        try {
+            if (Operation1 == '+')
+                op = Operation.SUM;
+            else if (Operation1 == '-')
+                op = Operation.SUBTRACT;
+            else if (Operation1 == '/')
+                op = Operation.DIVIDE;
+            else if (Operation1 == '*')
+                op = Operation.MULTIPLY;
+            if (Operation1 != '+' && Operation1 != '-' && Operation1 != '/' && Operation1 != '*') {
+                throw new ArithmeticException();
+            }
+        } catch (ArithmeticException s) {
+            System.out.println("throws Exception // т.к. строка не является математической операцией\n");
             return;
         }
         String num2 = in.next();
         in.close();
-        x = Check_number(num1)[1];
-        y = Check_number(num2)[1];
-        z = op.action(x, y);
-        if (Check_number(num1)[0] == 1 && Check_number(num2)[0] == 1) {
+        x = Check_number(num1);
+        y = Check_number(num2);
+        z = op.action(x[1], y[1]);
+        if (x[0] == 1 && y[0] == 1) {
             if (z < 0) {
-                System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел\n");
+                System.out.println("throws Exception // т.к. в римской системе нет отрицательных чисел\n");
             }
             if (z >= 0) {
                 System.out.println(Romanic_number(z));
             }
         }
-        else if (Check_number(num1)[0] != Check_number(num2)[0]) {
-            System.out.println("throws Exception //т.к. используются одновременно разные системы счисления\n");
+        else if (x[0] != y[0]) {
+            System.out.println("throws Exception // т.к. используются одновременно разные системы счисления\n");
         }
-        else if (Check_number(num1)[0] == 0 && Check_number(num2)[0] == 0) {
+        else if (x[0] == 0 && y[0] == 0) {
             System.out.println(z);
         }
     }
